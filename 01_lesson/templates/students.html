@@ -1,23 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>students list</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-   <h2>students list</h2>
-   <table>
-        <tr>
-          <th>student name</th>
-          <th>description</th>
-        </tr>
-        {% for student in students %}
-        <tr>
-            <td>{{student[0]}}</td>
-            <td>{{student[1]}}</td>
-            <td>{{student[2]}}</td>
-        </tr>
-        {% endfor %}
-    </table>     
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <form method="get" action="{{ url_for('students') }}">
+    <label for="filter">Filter by Grade:</label>
+    <select name="grade" id="filter">
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <!-- Add other grades as needed -->
+    </select>
+    <button type="submit">Filter</button>
+  </form>
+
+  <form method="get" action="{{ url_for('students') }}">
+    <label for="sort">Sort by:</label>
+    <select name="sort" id="sort">
+      <option value="name">Name</option>
+      <option value="grade">Grade</option>
+    </select>
+    <button type="submit">Sort</button>
+  </form>
+
+  <ul>
+    {% for student in students %}
+      <li {% if student == best_student %}style="background-color: yellow;"{% endif %}>
+        {{ student.name }} - {{ student.grade }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

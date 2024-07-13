@@ -1,0 +1,23 @@
+body.dark-mode {
+  background-color: black;
+  color: white;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.image-container {
+  text-align: center; /* Center the image */
+  margin: 20px 0; /* Add some margin around the image */
+}
+
+.image-container img {
+  max-width: 80%; /* Make the image responsive */
+  height: auto; /* Maintain aspect ratio */
+}
