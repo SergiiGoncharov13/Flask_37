@@ -4,3 +4,10 @@ h1 {
     text-align: center;
     padding: 10px;
     }
+
+.flashes {
+    background-color: brown;
+    text-color: red;
+    text-wide: 20px;
+    text-align: center;
+}
