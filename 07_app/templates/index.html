@@ -1,11 +1,34 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>{% block title %} Welcome to FlaskBlog {% endblock %}</h1>
-{% for post in posts %}
-<a href="{{ url_for('post', post_id=post['id']) }}">
-<h2>{{ post['title'] }}</h2>
-</a>
-<span class="badge badge-primary">{{ post['created'] }}</span>
-<hr>
-{% endfor %}
+    <h1>{% block title %}Welcome to FlaskBlog{% endblock %}</h1>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    {% for post in posts %}
+        <a href="{{ url_for('post', post_id=post['id']) }}">
+            <h2>{{ post['title'] }}</h2>
+        </a>
+        <span class="badge badge-primary">{{ post['created'] }}</span>
+        <hr>
+    {% endfor %}
+
+    <h2>Exchange Rates</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Currency</th>
+                <th>Buy</th>
+                <th>Sell</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in exchange_data %}
+                <tr>
+                    <td>{{ item['ccy'] }} / {{ item['base_ccy'] }}</td>
+                    <td>{{ item['buy'] }}</td>
+                    <td>{{ item['sale'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

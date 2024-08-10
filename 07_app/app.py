@@ -1,4 +1,5 @@
 import sqlite3
+import requests
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
 
@@ -27,7 +28,10 @@ def index():
     conn = get_db_connections()
     posts = conn.execute('SELECT * FROM posts').fetchall()
     conn.close()
-    return render_template('index.html', posts=posts)
+    uri = 'https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=5'
+    response = requests.get(uri)
+    exchange_data = response.json()
+    return render_template('index.html', posts=posts, exchange_data=exchange_data)
 
 
 @app.route('/<int:post_id>')
