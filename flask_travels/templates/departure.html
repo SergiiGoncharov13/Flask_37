@@ -1,51 +1,24 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ title }}</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-</head>
+{% extends 'base.html' %}
 
-<body>
-  <h1>Departures from {{ departure }} </h1>
-  <header class="container mt-3">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Flask Travel</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          {% for dep, name in departures.items() %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('departure', departure=dep) }}">З {{ name }}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </nav>
-  </header>
-  
-  <main class="container mt-3">
-    <h1 class="display-5 mt-4">Вирушаємо з {{ departures[departure] }}</h1>
-    <p class="mb-4">Знайдено {{ tours|length }} турів</p>
-    
-    <!-- CARDS -->
-    <div class="row mt-5">
-      {% for tour_id, tour in tours.items() %}
-      <div class="col-4">
-        <div class="card mb-4">
-          <img src="{{ tour['picture'] }}" class="card-img-top img-fluid" alt="Tour image">
-          <div class="card-body">
-            <h2 class="h5 card-title">{{ tour['title'] }}</h2>
-            <p class="card-text">{{ tour['description'] }}</p>
-            <a href="{{ url_for('tour_details', tour_id=tour_id) }}" class="btn btn-sm btn-primary">Деталі туру</a>
-          </div>
+{% block main %}
+<main class="container mt-3">
+  <h1 class="display-5 mt-4">Вирушаємо {{ departures[departure] }}</h1>
+  <p class="mb-4">Знайдено {{ tours|length }} турів</p>
+
+  <!-- CARDS -->
+  <div class="row mt-5">
+    {% for tour_id, tour in tours.items() %}
+    <div class="col-4">
+      <div class="card mb-4">
+        <img src="{{ tour['picture'] }}" class="card-img-top img-fluid" alt="{{ tour['title'] }}">
+        <div class="card-body">
+          <h2 class="h5 card-title">{{ tour['title'] }}</h2>
+          <p class="card-text">{{ tour['description'] }}</p>
+          <a href="{{ url_for('tour_details', tour_id=tour_id) }}" class="btn btn-sm btn-primary">Деталі туру</a>
         </div>
       </div>
-      {% endfor %}
     </div>
-  </main>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxh
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}
