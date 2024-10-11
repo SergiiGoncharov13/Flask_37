@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 
 import requests
 
-openweather_api_key = "62319bde120f4537451f6a6f4592956f"
+openweather_api_key = "api_key"
 
 
 app = Flask(__name__)
