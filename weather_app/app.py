@@ -4,6 +4,10 @@ import requests
 
 openweather_api_key = 'secret_key'
 
+# https://www.fakemail.net
+email = 'email_from_fakemail'
+password = 'password_from_fakemail'
+
 
 app = Flask(__name__)
 CORS(app)
@@ -60,7 +64,7 @@ def get_weather_forecast():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
 
 
 
