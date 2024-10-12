@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, jsonify
-
+from flask_cors import CORS
 import requests
 
-openweather_api_key = "api_key"
+openweather_api_key = 'secret_key'
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 def extract_weather_data(weather_data):
@@ -32,7 +33,7 @@ def index():
 def get_weather():
    location = request.args.get('location')
    if location:
-       url = f'http://api.openweathermap.org/data/2.5/weather?q={location}&APPID={openweather_api_key}'
+       url = f'http://api.openweathermap.org/data/2.5/weather?q={location}&appid={openweather_api_key}&units=metric'
        response = requests.get(url)
        data = response.json()
        return jsonify(data)
@@ -59,7 +60,7 @@ def get_weather_forecast():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True)
 
 
 
