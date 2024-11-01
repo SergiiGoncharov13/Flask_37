@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project_animal</title>
+</head>
+<body>
+    <h1>Animal List</h1>
+    <ul>
+        {% for animal in animals %}
+            <li><a href="{{ url_for('animal_detail', id=animal.id) }}">{{ animal.name }}</a> - Habitat: {{ animal.habitat }}, Diet: {{ animal.diet }}</li>
+            <form action="{{ url_for('delete_animal', id=animal.id) }}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_animal') }}">Add New Animal</a>
+</body>
+</html>
