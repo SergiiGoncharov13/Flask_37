@@ -1,0 +1,14 @@
+body {
+    background-color: aliceblue ;
+    padding-top: 60px;
+}
+.navbar {
+    margin-bottom: 20px;
+}
+.card {
+    margin-bottom: 15px;
+}
+form {
+    max-width: 500px;
+    margin: auto;
+}
